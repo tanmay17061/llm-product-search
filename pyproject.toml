@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "llm-product-search"
+version = "0.1.0"
+description = "Retrieve most relevant products to a user query."
+authors = ["Tanmay Garg"]
+license = "Apache 2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+langchain = "^0.0.279"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
