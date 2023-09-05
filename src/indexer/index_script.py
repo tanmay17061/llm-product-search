@@ -3,6 +3,7 @@ from langchain.embeddings.fake import DeterministicFakeEmbedding
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 import pandas as pd
+import logging
 
 def convert_product_features_to_text(features_str: str) -> str:
     return ", ".join(features_str.split("|"))
@@ -18,10 +19,7 @@ raw_documents = DataFrameLoader(
                     data_frame = df,
                     page_content_column="text"
                 ).load()[:5000]
-print(type(raw_documents))
-print(len(raw_documents))
-print(raw_documents[0])
-print(raw_documents[1])
+logging.info(f"Indexing {len(raw_documents)} documents.")
 # text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 # documents = text_splitter.split_documents(raw_documents)
 db = Chroma.from_documents(raw_documents, DeterministicFakeEmbedding(size=100), persist_directory="data/db.chroma")
